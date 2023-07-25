@@ -86,7 +86,7 @@
                 <configuration>
                     <executable>true</executable>
                     <mainClass>
-                        com.genesisconsult.usecase.companycontacts.rest.service.CompanyContactsApp
+                        com.genesisconsult.usecase.companycontacts.rest.CompanyContactsApp
                     </mainClass>
                     <excludes>
                         <exclude>

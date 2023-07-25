@@ -22,6 +22,6 @@ public class Address implements Serializable {
     private Long id;
     private String city;
     private String municipality;
-    private String street;
+    private String streetName;
     private String streetNumber;
 }

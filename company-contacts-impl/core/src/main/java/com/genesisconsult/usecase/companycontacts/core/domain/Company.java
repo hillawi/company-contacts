@@ -1,8 +1,6 @@
 package com.genesisconsult.usecase.companycontacts.core.domain;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -10,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
+@Entity
 @Getter
 @Builder
 @NoArgsConstructor
@@ -19,6 +18,7 @@ public class Company implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private int vatNumber;
+    private String vatNumber;
+    @ManyToOne
     private Address address;
 }
