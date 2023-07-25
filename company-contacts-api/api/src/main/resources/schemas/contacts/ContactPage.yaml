@@ -1,0 +1,8 @@
+allOf:
+  - type: object
+    properties:
+      content:
+        type: array
+        items:
+          $ref: 'Contact.yaml'
+  - $ref: '../Common.yaml#/components/schemas/Page'

@@ -1,0 +1,18 @@
+openapi: 3.0.3
+info:
+  version: v1
+  title: Company Contacts OpenAPI
+servers:
+  - url: http://localhost:8080
+tags:
+  - name: ContactService
+  - name: CompanyService
+paths:
+  /contacts:
+    $ref: 'apis/contacts/contacts.yaml'
+  /contacts/{id}:
+    $ref: 'apis/contacts/contacts-by-id.yaml'
+  /companies:
+    $ref: 'apis/companies/companies.yaml'
+  /companies/{id}:
+    $ref: 'apis/companies/companies-by-id.yaml'

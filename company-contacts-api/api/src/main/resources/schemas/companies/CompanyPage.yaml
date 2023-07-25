@@ -1,0 +1,8 @@
+allOf:
+  - type: object
+    properties:
+      content:
+        type: array
+        items:
+          $ref: 'Company.yaml'
+  - $ref: '../Common.yaml#/components/schemas/Page'

@@ -1,0 +1,37 @@
+get:
+  tags:
+    - CompanyService
+  operationId: searchCompanies
+  summary: Find all companies filtered by the provided query parameters
+  parameters:
+    - name: vatNumber
+      in: query
+      required: false
+      description: Company VAT number
+      schema:
+        type: string
+    - $ref: '../../schemas/Common.yaml#/components/parameters/PageableQueryParam'
+  responses:
+    "200":
+      description: Ok
+      content:
+        application/json:
+          schema:
+            $ref: '../../schemas/companies/CompanyPage.yaml'
+post:
+  tags:
+    - CompanyService
+  operationId: addCompany
+  summary: Add a new company
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/companies/Company.yaml'
+  responses:
+    "201":
+      description: Company added
+    "400":
+      description: Bad request
+    "409":
+      description: Company already exists

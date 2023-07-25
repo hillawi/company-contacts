@@ -1,0 +1,83 @@
+components:
+  parameters:
+    id:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+    PageableQueryParam:
+      name: pageable
+      in: query
+      required: false
+      schema:
+        $ref: '#/components/schemas/Pageable'
+  schemas:
+    Page:
+      type: object
+      properties:
+        last:
+          type: boolean
+          description: Whether it is the last page or not
+        totalPages:
+          type: integer
+          format: int32
+          description: Number of pages in total
+        totalElements:
+          type: integer
+          format: int64
+          description: Number of items in total
+        number:
+          type: integer
+          format: int32
+          description: Number of the current page
+        size:
+          type: integer
+          format: int32
+          description: Size of the pages
+        sort:
+          type: object
+          properties:
+            sorted:
+              type: boolean
+              description: Whether the page is sorted or not
+            unsorted:
+              type: boolean
+              description: Whether the page is unsorted or not
+            empty:
+              type: boolean
+              description: Whether the sort is empty or not
+        first:
+          type: boolean
+          description: Whether it is the first page or not
+        numberOfElements:
+          type: integer
+          format: int32
+          description: Number of items in the current page
+        empty:
+          type: boolean
+          description: Whether the page is empty or not
+    Pageable:
+      type: object
+      properties:
+        page:
+          type: integer
+          format: int32
+          minimum: 0
+          description: Zero-based page index (0..N)
+        size:
+          type: integer
+          format: int32
+          minimum: 1
+          description: The size of the page to be returned
+        sort:
+          type: array
+          items:
+            type: string
+          description: 'Sorting criteria in the format: property(,asc|desc). Default sort is ascending. Multiple sort criteria are supported.'
+      example:
+        page: 0
+        size: 10
+        sort:
+          - id,desc
+          - creationDate,desc

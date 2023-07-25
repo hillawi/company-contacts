@@ -1,0 +1,44 @@
+put:
+  tags:
+    - CompanyService
+  operationId: updateCompany
+  summary: Update the given company
+  parameters:
+    - $ref: '../../schemas/Common.yaml#/components/parameters/id'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/companies/CompanyUpdate.yaml'
+  responses:
+    "200":
+      description: Ok
+      content:
+        application/json:
+          schema:
+            $ref: '../../schemas/companies/Company.yaml'
+    "400":
+      description: Bad request
+    "404":
+      description: Company not found
+post:
+  tags:
+    - CompanyService
+  operationId: addContactToCompany
+  summary: Add a given contact to an company
+  parameters:
+    - $ref: '../../schemas/Common.yaml#/components/parameters/id'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/contacts/Contact.yaml'
+  responses:
+    "201":
+      description: Contact added
+    "400":
+      description: Bad request
+    "404":
+      description: Company not found
+    "409":
+      description: Contact already exists

@@ -1,0 +1,31 @@
+get:
+  tags:
+    - ContactService
+  operationId: findAllContacts
+  summary: Find all contacts
+  parameters:
+    - $ref: '../../schemas/Common.yaml#/components/parameters/PageableQueryParam'
+  responses:
+    "200":
+      description: Ok
+      content:
+        application/json:
+          schema:
+            $ref: '../../schemas/contacts/ContactPage.yaml'
+post:
+  tags:
+    - ContactService
+  operationId: addContact
+  summary: Add a new contact
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/contacts/Contact.yaml'
+  responses:
+    "201":
+      description: Contact added
+    "400":
+      description: Bad request
+    "409":
+      description: Contact already exists
