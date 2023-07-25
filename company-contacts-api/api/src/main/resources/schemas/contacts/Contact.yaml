@@ -7,5 +7,11 @@ properties:
     type: string
   lastName:
     type: string
+  contactType:
+    enum:
+      - EMPLOYEE
+      - FREELANCE
+  vatNumber:
+    type: string
   address:
     $ref: '../Address.yaml'

@@ -7,7 +7,7 @@ properties:
     type: string
   municipality:
     type: string
-  street:
+  streetName:
     type: string
   streetNumber:
     type: string
