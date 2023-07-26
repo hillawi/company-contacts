@@ -6,6 +6,7 @@ components:
       required: true
       schema:
         type: integer
+        format: int64
     PageableQueryParam:
       name: pageable
       in: query
