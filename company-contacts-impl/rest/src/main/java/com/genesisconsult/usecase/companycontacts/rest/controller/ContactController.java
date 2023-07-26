@@ -13,6 +13,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.net.URI;
+
 @Validated
 @RestController
 @RequiredArgsConstructor
@@ -22,7 +24,8 @@ public class ContactController implements ContactServiceApi {
 
     @Override
     public ResponseEntity<Void> addContact(@Valid Contact contact) {
-        return null;
+        var savedContact = contactService.save(contactMapper.map(contact));
+        return ResponseEntity.created(URI.create("/contacts/" + savedContact.getId())).build();
     }
 
     @Override

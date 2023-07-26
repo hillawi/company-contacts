@@ -28,8 +28,13 @@ public class ContactServiceImpl implements ContactService {
     }
 
     @Override
+    public Contact save(Contact contact) {
+        // TODO find contact by vatNumber and throw an exception if found
+        return contactRepository.save(contact.validate());
+    }
+
+    @Override
     public Contact update(Contact contact) {
-        contact.validate();
-        return contactRepository.save(contact);
+        return contactRepository.save(contact.validate());
     }
 }

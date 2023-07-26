@@ -9,5 +9,7 @@ public interface ContactService {
 
     Page<Contact> findAll(Pageable pageable);
 
+    Contact save(Contact contact);
+
     Contact update(Contact contact);
 }

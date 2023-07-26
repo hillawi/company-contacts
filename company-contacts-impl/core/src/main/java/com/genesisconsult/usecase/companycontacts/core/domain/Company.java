@@ -15,10 +15,11 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class Company implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(generator = "COMPANY_SEQ_GENERATOR")
+    @SequenceGenerator(name = "COMPANY_SEQ_GENERATOR", sequenceName = "COMPANY_SEQ", initialValue = 100)
     private Long id;
     private String name;
     private String vatNumber;
-    @ManyToOne
+    @OneToOne
     private Address address;
 }
