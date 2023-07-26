@@ -13,3 +13,10 @@ spring:
       enabled: true
       settings:
         web-allow-others: true
+  jackson:
+    default-property-inclusion: non_null
+    mapper:
+      accept-case-insensitive-enums: true
+server:
+  servlet:
+    contextPath: /v1
