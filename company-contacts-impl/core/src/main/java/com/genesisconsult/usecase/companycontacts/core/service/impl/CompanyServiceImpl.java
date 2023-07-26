@@ -14,6 +14,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.function.Predicate;
+
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -38,16 +41,16 @@ public class CompanyServiceImpl implements CompanyService {
     @Override
     public Company save(Company company) {
         var companyPage = search(company.getVatNumber(), Pageable.unpaged());
-        if (companyPage.hasContent()) {
-            throw new EntityAlreadyExistsException(
-                    String.format("A company with VAT Number (%s) already exists", company.getVatNumber()));
-        }
+        validate(company, companyPage.getContent());
         return companyRepository.save(company);
     }
 
     @Override
     public Company update(Company company) {
-        // TODO avoid same name? vatNumber?
+        var companyPage = search(company.getVatNumber(), Pageable.unpaged());
+        var companies = companyPage.getContent().stream()
+                .filter(c -> !c.getId().equals(company.getId())).toList();
+        validate(company, companies);
         return companyRepository.save(company);
     }
 
@@ -69,5 +72,16 @@ public class CompanyServiceImpl implements CompanyService {
     @Override
     public Page<Contact> findAllContacts(Long id, Pageable pageable) {
         return contactService.findContactsByCompany(findById(id), pageable);
+    }
+
+    private void validate(Company company, List<Company> companies) {
+        if (companies == null || companies.isEmpty()) {
+            return;
+        }
+        Predicate<Company> companyPredicate = c -> c.getVatNumber().equalsIgnoreCase(company.getVatNumber());
+        if (companies.stream().anyMatch(companyPredicate)) {
+            throw new EntityAlreadyExistsException(
+                    String.format("A company with VAT Number (%s) already exists", company.getVatNumber()));
+        }
     }
 }
