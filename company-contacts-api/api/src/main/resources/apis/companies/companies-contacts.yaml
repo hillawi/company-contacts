@@ -1,3 +1,23 @@
+get:
+  tags:
+    - CompanyService
+  operationId: findCompanyContactsById
+  summary: Find all contacts of a company by its ID
+  parameters:
+    - $ref: '../../schemas/Common.yaml#/components/parameters/id'
+  responses:
+    "200":
+      description: Ok
+      content:
+        application/json:
+          schema:
+            $ref: '../../schemas/contacts/ContactPage.yaml'
+    "404":
+      description: Company not found
+      content:
+        application/problem+json:
+          schema:
+            $ref: '../../schemas/Common.yaml#/components/schemas/Problem'
 post:
   tags:
     - CompanyService
