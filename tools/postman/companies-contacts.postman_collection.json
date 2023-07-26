@@ -1,0 +1,308 @@
+{
+	"info": {
+		"_postman_id": "746da333-22e5-469a-a6cc-f06b005b50ef",
+		"name": "companies-contacts",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3714361"
+	},
+	"item": [
+		{
+			"name": "companies",
+			"item": [
+				{
+					"name": "search",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{companies-contacts-url}}/companies?vatNumber=BE123562154",
+							"host": [
+								"{{companies-contacts-url}}"
+							],
+							"path": [
+								"companies"
+							],
+							"query": [
+								{
+									"key": "vatNumber",
+									"value": "BE123562154"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find-by-id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{companies-contacts-url}}/companies/100",
+							"host": [
+								"{{companies-contacts-url}}"
+							],
+							"path": [
+								"companies",
+								"100"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find-company-contacts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{companies-contacts-url}}/companies/100/contacts",
+							"host": [
+								"{{companies-contacts-url}}"
+							],
+							"path": [
+								"companies",
+								"100",
+								"contacts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Umbrella Corporation\",\n    \"vatNumber\": \"BE123562154\",\n    \"address\": {\n        \"city\": \"Brussels\",\n        \"municipality\": \"Brussels\",\n        \"streetName\": \"Rue Neuve\",\n        \"streetNumber\": \"42\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{companies-contacts-url}}/companies",
+							"host": [
+								"{{companies-contacts-url}}"
+							],
+							"path": [
+								"companies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"The Company\",\n    \"vatNumber\": \"BE1235621547\",\n    \"address\": {\n        \"id\": 3,\n        \"city\": \"Brussels\",\n        \"municipality\": \"Evere\",\n        \"streetName\": \"Chaussée de Louvain\",\n        \"streetNumber\": \"900\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{companies-contacts-url}}/companies/1",
+							"host": [
+								"{{companies-contacts-url}}"
+							],
+							"path": [
+								"companies",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add-contact",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{companies-contacts-url}}/companies/100/contacts?contactId=100",
+							"host": [
+								"{{companies-contacts-url}}"
+							],
+							"path": [
+								"companies",
+								"100",
+								"contacts"
+							],
+							"query": [
+								{
+									"key": "contactId",
+									"value": "100"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "contacts",
+			"item": [
+				{
+					"name": "find-all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{companies-contacts-url}}/contacts",
+							"host": [
+								"{{companies-contacts-url}}"
+							],
+							"path": [
+								"contacts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find-by-id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{companies-contacts-url}}/contacts/1",
+							"host": [
+								"{{companies-contacts-url}}"
+							],
+							"path": [
+								"contacts",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"Juan\",\n    \"lastName\": \"Doe\",\n    \"contactType\": \"FREELANCE\",\n    \"vatNumber\": \"BE542698888\",\n    \"address\": {\n        \"city\": \"Brussels\",\n        \"municipality\": \"Brussels\",\n        \"streetName\": \"Rue Neuve\",\n        \"streetNumber\": \"50\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{companies-contacts-url}}/contacts",
+							"host": [
+								"{{companies-contacts-url}}"
+							],
+							"path": [
+								"contacts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"contactType\": \"FREELANCE\",\n    \"vatNumber\": \"be15222210\",\n    \"address\": {\n        \"city\": \"Brussels\",\n        \"municipality\": \"Brussels\",\n        \"streetName\": \"Rue Haute\",\n        \"streetNumber\": \"1\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{companies-contacts-url}}/contacts/1",
+							"host": [
+								"{{companies-contacts-url}}"
+							],
+							"path": [
+								"contacts",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{companies-contacts-url}}/contacts/100",
+							"host": [
+								"{{companies-contacts-url}}"
+							],
+							"path": [
+								"contacts",
+								"100"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "companies-contacts-url",
+			"value": "http://localhost:8080/v1"
+		}
+	]
+}
