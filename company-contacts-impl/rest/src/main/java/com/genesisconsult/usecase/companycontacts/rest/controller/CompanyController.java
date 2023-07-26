@@ -6,6 +6,7 @@ import com.genesisconsult.usecase.companycontacts.rest.mapper.CompanyMapper;
 import com.genesisconsult.usecase.companycontacts.rest.mapper.ContactMapper;
 import com.genesisconsult.usecase.companycontacts.rest.representations.Company;
 import com.genesisconsult.usecase.companycontacts.rest.representations.CompanyUpdate;
+import jakarta.servlet.ServletContext;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
@@ -24,11 +25,13 @@ public class CompanyController implements CompanyServiceApi {
     private final CompanyService companyService;
     private final CompanyMapper companyMapper;
     private final ContactMapper contactMapper;
+    private final ServletContext servletContext;
 
     @Override
     public ResponseEntity<Void> addCompany(@Valid Company company) {
         var savedCompany = companyService.save(companyMapper.map(company));
-        return ResponseEntity.created(URI.create("/companies/" + savedCompany.getId())).build();
+        var uri = servletContext.getContextPath() + "/companies/" + savedCompany.getId();
+        return ResponseEntity.created(URI.create(uri)).build();
     }
 
     @Override

@@ -5,6 +5,7 @@ import com.genesisconsult.usecase.companycontacts.rest.api.ContactServiceApi;
 import com.genesisconsult.usecase.companycontacts.rest.mapper.ContactMapper;
 import com.genesisconsult.usecase.companycontacts.rest.representations.Contact;
 import com.genesisconsult.usecase.companycontacts.rest.representations.ContactUpdate;
+import jakarta.servlet.ServletContext;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -21,11 +22,13 @@ import java.net.URI;
 public class ContactController implements ContactServiceApi {
     private final ContactService contactService;
     private final ContactMapper contactMapper;
+    private final ServletContext servletContext;
 
     @Override
     public ResponseEntity<Void> addContact(@Valid Contact contact) {
         var savedContact = contactService.save(contactMapper.map(contact));
-        return ResponseEntity.created(URI.create("/contacts/" + savedContact.getId())).build();
+        var uri = servletContext.getContextPath() + "/contacts/" + savedContact.getId();
+        return ResponseEntity.created(URI.create(uri)).build();
     }
 
     @Override
