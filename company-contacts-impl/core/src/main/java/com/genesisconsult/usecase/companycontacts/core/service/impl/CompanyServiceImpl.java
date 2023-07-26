@@ -7,6 +7,7 @@ import com.genesisconsult.usecase.companycontacts.core.repo.CompanyRepository;
 import com.genesisconsult.usecase.companycontacts.core.service.CompanyService;
 import com.genesisconsult.usecase.companycontacts.core.service.ContactService;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -26,23 +27,22 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
     @Override
-    public Page<Company> findAll(Pageable pageable) {
-        return null;
+    public Page<Company> search(String vatNumber, Pageable pageable) {
+        if (StringUtils.isBlank(vatNumber)) {
+            return companyRepository.findAll(pageable);
+        }
+        return companyRepository.findCompaniesByVatNumberContainsIgnoreCase(vatNumber, pageable);
     }
 
     @Override
     public Company save(Company company) {
+        // TODO search for a company with the same VAT number, throw an exception if found
         return companyRepository.save(company);
     }
 
     @Override
     public Company update(Company company) {
         return null;
-    }
-
-    @Override
-    public void deleteById(Long id) {
-
     }
 
     @Override

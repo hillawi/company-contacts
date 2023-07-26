@@ -36,7 +36,7 @@ public class ContactController implements ContactServiceApi {
 
     @Override
     public ResponseEntity<Page> findAllContacts(@Valid Pageable pageable) {
-        return ResponseEntity.ok(contactService.findAll(pageable));
+        return ResponseEntity.ok(contactService.findAll(pageable).map(contactMapper::map));
     }
 
     @Override

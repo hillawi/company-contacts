@@ -7,13 +7,11 @@ import org.springframework.data.domain.Pageable;
 public interface CompanyService {
     Company findById(Long id);
 
-    Page<Company> findAll(Pageable pageable);
+    Page<Company> search(String vatNumber, Pageable pageable);
 
     Company save(Company company);
 
     Company update(Company company);
-
-    void deleteById(Long id);
 
     void addContact(Long companyId, Long contactId);
 }

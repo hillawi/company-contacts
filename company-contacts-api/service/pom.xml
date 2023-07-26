@@ -116,11 +116,15 @@
                                 <importMapping>
                                     com.genesisconsult.usecase.companycontacts.rest.representations.ContactPage=org.springframework.data.domain.Page
                                 </importMapping>
+                                <importMapping>
+                                    com.genesisconsult.usecase.companycontacts.rest.representations.CompanyPage=org.springframework.data.domain.Page
+                                </importMapping>
                             </importMappings>
                             <typeMappings>
                                 <typeMapping>OffsetDateTime=java.time.LocalDateTime</typeMapping>
                                 <typeMapping>Pageable=org.springframework.data.domain.Pageable</typeMapping>
                                 <typeMapping>ContactPage=org.springframework.data.domain.Page</typeMapping>
+                                <typeMapping>CompanyPage=org.springframework.data.domain.Page</typeMapping>
                             </typeMappings>
                             <configOptions>
                                 <useSpringBoot3>true</useSpringBoot3>
