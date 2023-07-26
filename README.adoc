@@ -5,7 +5,7 @@ Managing contacts for companies
 * API
 * Implementation
 
-=== Build and Run
+== Build and Run
 
 [source,bash]
 ----
