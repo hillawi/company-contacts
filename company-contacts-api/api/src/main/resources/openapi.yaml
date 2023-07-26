@@ -6,7 +6,9 @@ servers:
   - url: http://localhost:8080
 tags:
   - name: ContactService
+    description: The Contacts API
   - name: CompanyService
+    description: The Companies API
 paths:
   /contacts:
     $ref: 'apis/contacts/contacts.yaml'
