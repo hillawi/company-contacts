@@ -4,3 +4,12 @@ Managing contacts for companies
 
 * API
 * Implementation
+
+=== Build and Run
+
+[source,bash]
+----
+mvn clean install -f company-contacts-api/pom.xml
+
+mvn clean install -f company-contacts-impl/pom.xml && mvn spring-boot:run -f company-contacts-impl/pom.xml -pl rest
+----
