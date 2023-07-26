@@ -19,7 +19,7 @@
 
     <properties>
         <java.version>17</java.version>
-        <company-contacts-api.version>1.0.0-SNAPSHOT</company-contacts-api.version>
+        <company-contacts-api-service.version>1.0.0-SNAPSHOT</company-contacts-api-service.version>
         <maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
         <commons-lang3.version>3.12.0</commons-lang3.version>
     </properties>
@@ -38,8 +38,8 @@
             </dependency>
             <dependency>
                 <groupId>com.genesisconsult.usecase</groupId>
-                <artifactId>company-contacts-api</artifactId>
-                <version>${company-contacts-api.version}</version>
+                <artifactId>company-contacts-api-service</artifactId>
+                <version>${company-contacts-api-service.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.commons</groupId>
