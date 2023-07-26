@@ -32,7 +32,7 @@ public class ContactController implements ContactServiceApi {
 
     @Override
     public ResponseEntity<Page> findAllContacts(@Valid Pageable pageable) {
-        return null;
+        return ResponseEntity.ok(contactService.findAll(pageable));
     }
 
     @Override
