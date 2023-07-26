@@ -1,6 +1,7 @@
 package com.genesisconsult.usecase.companycontacts.core.service.impl;
 
 import com.genesisconsult.usecase.companycontacts.core.domain.Company;
+import com.genesisconsult.usecase.companycontacts.core.domain.Contact;
 import com.genesisconsult.usecase.companycontacts.core.exception.EntityAlreadyExistsException;
 import com.genesisconsult.usecase.companycontacts.core.exception.EntityNotFoundException;
 import com.genesisconsult.usecase.companycontacts.core.repo.CompanyRepository;
@@ -58,5 +59,10 @@ public class CompanyServiceImpl implements CompanyService {
 
         company.getContacts().add(contact);
         companyRepository.save(company);
+    }
+
+    @Override
+    public Page<Contact> findAllContacts(Long id, Pageable pageable) {
+        return contactService.findContactsByCompany(findById(id), pageable);
     }
 }

@@ -5,6 +5,7 @@ get:
   summary: Find all contacts of a company by its ID
   parameters:
     - $ref: '../../schemas/Common.yaml#/components/parameters/id'
+    - $ref: '../../schemas/Common.yaml#/components/parameters/PageableQueryParam'
   responses:
     "200":
       description: Ok

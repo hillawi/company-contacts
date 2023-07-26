@@ -1,5 +1,6 @@
 package com.genesisconsult.usecase.companycontacts.core.service.impl;
 
+import com.genesisconsult.usecase.companycontacts.core.domain.Company;
 import com.genesisconsult.usecase.companycontacts.core.domain.Contact;
 import com.genesisconsult.usecase.companycontacts.core.exception.EntityNotFoundException;
 import com.genesisconsult.usecase.companycontacts.core.repo.ContactRepository;
@@ -43,5 +44,10 @@ public class ContactServiceImpl implements ContactService {
         var contact = findById(id);
         contact.getCompanies().forEach(c -> c.getContacts().remove(contact));
         contactRepository.delete(contact);
+    }
+
+    @Override
+    public Page<Contact> findContactsByCompany(Company company, Pageable pageable) {
+        return contactRepository.findContactsByCompanies_Id(company.getId(), pageable);
     }
 }

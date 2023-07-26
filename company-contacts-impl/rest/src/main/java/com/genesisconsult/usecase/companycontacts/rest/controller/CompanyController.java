@@ -3,6 +3,7 @@ package com.genesisconsult.usecase.companycontacts.rest.controller;
 import com.genesisconsult.usecase.companycontacts.core.service.CompanyService;
 import com.genesisconsult.usecase.companycontacts.rest.api.CompanyServiceApi;
 import com.genesisconsult.usecase.companycontacts.rest.mapper.CompanyMapper;
+import com.genesisconsult.usecase.companycontacts.rest.mapper.ContactMapper;
 import com.genesisconsult.usecase.companycontacts.rest.representations.Company;
 import com.genesisconsult.usecase.companycontacts.rest.representations.CompanyUpdate;
 import jakarta.validation.Valid;
@@ -22,6 +23,7 @@ import java.net.URI;
 public class CompanyController implements CompanyServiceApi {
     private final CompanyService companyService;
     private final CompanyMapper companyMapper;
+    private final ContactMapper contactMapper;
 
     @Override
     public ResponseEntity<Void> addCompany(@Valid Company company) {
@@ -38,6 +40,11 @@ public class CompanyController implements CompanyServiceApi {
     @Override
     public ResponseEntity<Company> findCompanyById(Long id) {
         return ResponseEntity.ok(companyMapper.map(companyService.findById(id)));
+    }
+
+    @Override
+    public ResponseEntity<Page> findCompanyContactsById(Long id, @Valid Pageable pageable) {
+        return ResponseEntity.ok(companyService.findAllContacts(id, pageable).map(contactMapper::map));
     }
 
     @Override
