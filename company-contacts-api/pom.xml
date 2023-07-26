@@ -25,7 +25,6 @@
         <build-helper-maven-plugin.version>3.3.0</build-helper-maven-plugin.version>
         <openapi-codegen.base-package>com.genesisconsult.usecase.companycontacts.rest</openapi-codegen.base-package>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <springdoc-openapi-starter-webmvc-ui.version>2.1.0</springdoc-openapi-starter-webmvc-ui.version>
         <spring-data-commons.version>3.1.2</spring-data-commons.version>
     </properties>
 
@@ -54,11 +53,6 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-web</artifactId>
-            </dependency>
-            <dependency>
-                <groupId>org.springdoc</groupId>
-                <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-                <version>${springdoc-openapi-starter-webmvc-ui.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.openapitools</groupId>

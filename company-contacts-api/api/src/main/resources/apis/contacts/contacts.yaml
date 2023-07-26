@@ -27,5 +27,13 @@ post:
       description: Contact added
     "400":
       description: Bad request
+      content:
+        application/problem+json:
+          schema:
+            $ref: '../../schemas/Common.yaml#/components/schemas/Problem'
     "409":
       description: Contact already exists
+      content:
+        application/problem+json:
+          schema:
+            $ref: '../../schemas/Common.yaml#/components/schemas/Problem'

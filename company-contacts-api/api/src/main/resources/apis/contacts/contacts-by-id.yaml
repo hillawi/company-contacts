@@ -14,6 +14,10 @@ get:
             $ref: '../../schemas/contacts/Contact.yaml'
     "404":
       description: Contact not found
+      content:
+        application/problem+json:
+          schema:
+            $ref: '../../schemas/Common.yaml#/components/schemas/Problem'
 put:
   tags:
     - ContactService
@@ -35,8 +39,16 @@ put:
             $ref: '../../schemas/contacts/Contact.yaml'
     "400":
       description: Bad request
+      content:
+        application/problem+json:
+          schema:
+            $ref: '../../schemas/Common.yaml#/components/schemas/Problem'
     "404":
       description: Contact not found
+      content:
+        application/problem+json:
+          schema:
+            $ref: '../../schemas/Common.yaml#/components/schemas/Problem'
 delete:
   tags:
     - ContactService
@@ -49,3 +61,7 @@ delete:
       description: Ok
     "404":
       description: Contact not found
+      content:
+        application/problem+json:
+          schema:
+            $ref: '../../schemas/Common.yaml#/components/schemas/Problem'

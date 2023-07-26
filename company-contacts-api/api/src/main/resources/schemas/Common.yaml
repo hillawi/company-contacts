@@ -14,6 +14,29 @@ components:
       schema:
         $ref: '#/components/schemas/Pageable'
   schemas:
+    Problem:
+      type: object
+      properties:
+        type:
+          type: string
+          example: 'https://genesis-consult.com/demo/company-contacts/problems/not-found'
+        title:
+          type: string
+          example: Entity not found
+        status:
+          type: integer
+          format: int32
+          example: 404
+        detail:
+          type: string
+          example: Contact with ID 99 not found
+        instance:
+          type: string
+          example: '/contacts/99'
+        timestamp:
+          type: date
+          format: date-time
+          example: '2023-07-28T14:00:00.00000000Z'
     Page:
       type: object
       properties:
