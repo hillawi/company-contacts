@@ -30,7 +30,8 @@ public class ContactController implements ContactServiceApi {
 
     @Override
     public ResponseEntity<Void> deleteContact(Long id) {
-        return null;
+        contactService.deleteById(id);
+        return ResponseEntity.ok().build();
     }
 
     @Override

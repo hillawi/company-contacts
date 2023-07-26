@@ -37,4 +37,9 @@ public class ContactServiceImpl implements ContactService {
     public Contact update(Contact contact) {
         return contactRepository.save(contact.validate());
     }
+
+    @Override
+    public void deleteById(Long id) {
+        contactRepository.delete(findById(id));
+    }
 }
