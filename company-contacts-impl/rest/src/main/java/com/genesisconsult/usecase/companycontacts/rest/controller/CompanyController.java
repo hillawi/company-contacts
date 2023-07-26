@@ -57,6 +57,9 @@ public class CompanyController implements CompanyServiceApi {
 
     @Override
     public ResponseEntity<Company> updateCompany(Long id, @Valid CompanyUpdate companyUpdate) {
-        return null;
+        var company = companyService.findById(id);
+        companyMapper.update(companyUpdate, company);
+        var updatedCompany = companyService.update(company);
+        return ResponseEntity.ok(companyMapper.map(updatedCompany));
     }
 }

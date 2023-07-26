@@ -43,7 +43,8 @@ public class CompanyServiceImpl implements CompanyService {
 
     @Override
     public Company update(Company company) {
-        return null;
+        // TODO avoid same name? vatNumber?
+        return companyRepository.save(company);
     }
 
     @Override
