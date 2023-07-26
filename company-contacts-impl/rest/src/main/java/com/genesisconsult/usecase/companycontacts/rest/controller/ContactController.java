@@ -42,6 +42,9 @@ public class ContactController implements ContactServiceApi {
 
     @Override
     public ResponseEntity<Contact> updateContact(Long id, @Valid ContactUpdate contactUpdate) {
-        return null;
+        var contact = contactService.findById(id);
+        contactMapper.update(contactUpdate, contact);
+        var updatedContact = contactService.update(contact);
+        return ResponseEntity.ok(contactMapper.map(updatedContact));
     }
 }

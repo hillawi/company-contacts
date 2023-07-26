@@ -8,4 +8,6 @@ public interface ContactService {
     Contact findById(Long id);
 
     Page<Contact> findAll(Pageable pageable);
+
+    Contact update(Contact contact);
 }

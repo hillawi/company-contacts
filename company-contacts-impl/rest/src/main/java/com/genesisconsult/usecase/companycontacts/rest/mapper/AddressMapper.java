@@ -1,9 +1,10 @@
 package com.genesisconsult.usecase.companycontacts.rest.mapper;
 
-import com.genesisconsult.usecase.companycontacts.rest.representations.Address;
+import com.genesisconsult.usecase.companycontacts.core.domain.Address;
 import org.mapstruct.Mapper;
+import org.mapstruct.MappingConstants;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface AddressMapper {
-    Address map(com.genesisconsult.usecase.companycontacts.core.domain.Address address);
+    com.genesisconsult.usecase.companycontacts.rest.representations.Address map(Address address);
 }

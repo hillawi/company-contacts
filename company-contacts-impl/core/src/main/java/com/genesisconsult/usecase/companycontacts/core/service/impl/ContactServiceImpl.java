@@ -8,8 +8,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class ContactServiceImpl implements ContactService {
     private final ContactRepository contactRepository;
@@ -23,5 +25,11 @@ public class ContactServiceImpl implements ContactService {
     @Override
     public Page<Contact> findAll(Pageable pageable) {
         return contactRepository.findAll(pageable);
+    }
+
+    @Override
+    public Contact update(Contact contact) {
+        contact.validate();
+        return contactRepository.save(contact);
     }
 }
