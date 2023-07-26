@@ -16,9 +16,9 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class Contact implements Serializable {
     @Id
-    @Setter(AccessLevel.NONE)
     @GeneratedValue(generator = "CONTACT_SEQ_GENERATOR")
     @SequenceGenerator(name = "CONTACT_SEQ_GENERATOR", sequenceName = "CONTACT_SEQ", initialValue = 100)
+    @Setter(AccessLevel.NONE)
     private Long id;
     @NotBlank(message = "The contact first name is required")
     private String firstName;

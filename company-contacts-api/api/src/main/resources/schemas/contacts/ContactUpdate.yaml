@@ -10,3 +10,5 @@ properties:
       - FREELANCE
   vatNumber:
     type: string
+  address:
+    $ref: '../AddressUpdate.yaml'

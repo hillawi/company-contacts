@@ -1,0 +1,10 @@
+type: object
+properties:
+  city:
+    type: string
+  municipality:
+    type: string
+  streetName:
+    type: string
+  streetNumber:
+    type: string

@@ -5,22 +5,20 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.validation.constraints.NotBlank;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.io.Serializable;
 
 @Entity
 @Getter
-@Builder
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Address implements Serializable {
     @Id
     @GeneratedValue(generator = "ADDRESS_SEQ_GENERATOR")
     @SequenceGenerator(name = "ADDRESS_SEQ_GENERATOR", sequenceName = "ADDRESS_SEQ", initialValue = 100)
+    @Setter(AccessLevel.NONE)
     private Long id;
     @NotBlank(message = "The address city is required")
     private String city;

@@ -4,3 +4,5 @@ properties:
     type: string
   vatNumber:
     type: string
+  address:
+    $ref: '../AddressUpdate.yaml'

@@ -14,6 +14,5 @@ public interface ContactMapper {
     @Mapping(target = "id", ignore = true)
     Contact map(com.genesisconsult.usecase.companycontacts.rest.representations.Contact contact);
 
-    @Mapping(target = "address", ignore = true)
     void update(ContactUpdate contactUpdate, @MappingTarget Contact contact);
 }
