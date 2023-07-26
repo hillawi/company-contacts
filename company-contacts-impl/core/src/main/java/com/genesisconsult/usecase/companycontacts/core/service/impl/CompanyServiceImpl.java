@@ -37,7 +37,11 @@ public class CompanyServiceImpl implements CompanyService {
 
     @Override
     public Company save(Company company) {
-        // TODO search for a company with the same VAT number, throw an exception if found
+        var companyPage = search(company.getVatNumber(), Pageable.unpaged());
+        if (companyPage.hasContent()) {
+            throw new EntityAlreadyExistsException(
+                    String.format("A company with VAT Number (%s) already exists", company.getVatNumber()));
+        }
         return companyRepository.save(company);
     }
 
