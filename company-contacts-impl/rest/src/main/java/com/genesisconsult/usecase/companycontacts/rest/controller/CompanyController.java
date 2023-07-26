@@ -36,6 +36,11 @@ public class CompanyController implements CompanyServiceApi {
     }
 
     @Override
+    public ResponseEntity<Company> findCompanyById(Long id) {
+        return ResponseEntity.ok(companyMapper.map(companyService.findById(id)));
+    }
+
+    @Override
     public ResponseEntity<Page> searchCompanies(@Valid String vatNumber, @Valid Pageable pageable) {
         return ResponseEntity.ok(companyService.search(vatNumber, pageable).map(companyMapper::map));
     }
