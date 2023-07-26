@@ -2,8 +2,9 @@
 
 Managing contacts for companies
 
-* API
-* Implementation
+* link:company-contacts-api[API]
+
+* link:company-contacts-api[Implementation]
 
 == Build and Run
 
