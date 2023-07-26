@@ -40,6 +40,8 @@ public class ContactServiceImpl implements ContactService {
 
     @Override
     public void deleteById(Long id) {
-        contactRepository.delete(findById(id));
+        var contact = findById(id);
+        contact.getCompanies().forEach(c -> c.getContacts().remove(contact));
+        contactRepository.delete(contact);
     }
 }

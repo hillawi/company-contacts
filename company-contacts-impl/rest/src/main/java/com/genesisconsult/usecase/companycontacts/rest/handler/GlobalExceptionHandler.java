@@ -1,5 +1,6 @@
 package com.genesisconsult.usecase.companycontacts.rest.handler;
 
+import com.genesisconsult.usecase.companycontacts.core.exception.EntityAlreadyExistsException;
 import com.genesisconsult.usecase.companycontacts.core.exception.EntityNotFoundException;
 import com.genesisconsult.usecase.companycontacts.core.exception.InvalidEntityException;
 import jakarta.validation.ConstraintViolationException;
@@ -31,6 +32,15 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         problemDetail.setTitle("Entity not valid");
         problemDetail.setProperty("timestamp", Instant.now());
         problemDetail.setType(URI.create(BASE_URL + "/bad-request"));
+        return problemDetail;
+    }
+
+    @ExceptionHandler(EntityAlreadyExistsException.class)
+    ProblemDetail handleEntityAlreadyExistsException(EntityAlreadyExistsException e) {
+        ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.CONFLICT, e.getMessage());
+        problemDetail.setTitle("Entity already exists");
+        problemDetail.setProperty("timestamp", Instant.now());
+        problemDetail.setType(URI.create(BASE_URL + "/conflict"));
         return problemDetail;
     }
 

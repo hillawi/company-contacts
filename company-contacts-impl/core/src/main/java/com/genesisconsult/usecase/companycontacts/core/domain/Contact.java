@@ -8,6 +8,7 @@ import lombok.*;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.Serializable;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -30,6 +31,8 @@ public class Contact implements Serializable {
     @OneToOne(cascade = CascadeType.ALL)
     @NotNull(message = "The contact address is required")
     private Address address;
+    @ManyToMany(mappedBy = "contacts")
+    private Set<Company> companies;
 
     public Contact validate() {
         if (ContactType.FREELANCE.equals(contactType) && StringUtils.isBlank(vatNumber)) {
