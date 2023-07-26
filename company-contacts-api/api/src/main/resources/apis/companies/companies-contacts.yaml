@@ -1,0 +1,35 @@
+post:
+  tags:
+    - CompanyService
+  operationId: addContactToCompany
+  summary: Add a given contact to an company
+  parameters:
+    - $ref: '../../schemas/Common.yaml#/components/parameters/id'
+    - name: contactId
+      in: query
+      required: true
+      description: The contact ID
+      schema:
+        type: integer
+        format: int64
+  responses:
+    "200":
+      description: Contact added
+    "400":
+      description: Bad request
+      content:
+        application/problem+json:
+          schema:
+            $ref: '../../schemas/Common.yaml#/components/schemas/Problem'
+    "404":
+      description: 'Company or Contact not found'
+      content:
+        application/problem+json:
+          schema:
+            $ref: '../../schemas/Common.yaml#/components/schemas/Problem'
+    "409":
+      description: Contact already works for the given Company
+      content:
+        application/problem+json:
+          schema:
+            $ref: '../../schemas/Common.yaml#/components/schemas/Problem'

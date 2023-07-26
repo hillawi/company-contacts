@@ -18,3 +18,5 @@ paths:
     $ref: 'apis/companies/companies.yaml'
   /companies/{id}:
     $ref: 'apis/companies/companies-by-id.yaml'
+  /companies/{id}/contacts:
+    $ref: 'apis/companies/companies-contacts.yaml'

@@ -21,36 +21,3 @@ put:
       description: Bad request
     "404":
       description: Company not found
-post:
-  tags:
-    - CompanyService
-  operationId: addContactToCompany
-  summary: Add a given contact to an company
-  parameters:
-    - $ref: '../../schemas/Common.yaml#/components/parameters/id'
-  requestBody:
-    content:
-      application/json:
-        schema:
-          $ref: '../../schemas/contacts/Contact.yaml'
-  responses:
-    "201":
-      description: Contact added
-    "400":
-      description: Bad request
-      content:
-        application/problem+json:
-          schema:
-            $ref: '../../schemas/Common.yaml#/components/schemas/Problem'
-    "404":
-      description: Company not found
-      content:
-        application/problem+json:
-          schema:
-            $ref: '../../schemas/Common.yaml#/components/schemas/Problem'
-    "409":
-      description: Contact already exists
-      content:
-        application/problem+json:
-          schema:
-            $ref: '../../schemas/Common.yaml#/components/schemas/Problem'
