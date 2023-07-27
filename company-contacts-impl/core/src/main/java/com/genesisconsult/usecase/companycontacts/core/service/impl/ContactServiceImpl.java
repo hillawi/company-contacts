@@ -13,6 +13,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collection;
+import java.util.function.Function;
+
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -32,17 +35,23 @@ public class ContactServiceImpl implements ContactService {
 
     @Override
     public Contact save(Contact contact) {
-        var vatNumber = contact.getVatNumber();
-        if (StringUtils.isNotBlank(vatNumber) &&
-                contactRepository.countContactByVatNumberEqualsIgnoreCase(vatNumber) > 0) {
-            throw new InvalidEntityException(
-                    String.format("VAT number (%s) is already defined for another contact", vatNumber));
-        }
+        Function<String, Collection<Contact>> contactFunction =
+                contactRepository::findContactByVatNumberEqualsIgnoreCase;
+
+        validate(contact, contactFunction);
         return contactRepository.save(contact.validate());
     }
 
     @Override
     public Contact update(Contact contact) {
+        Function<String, Collection<Contact>> contactFunction = vatNumber -> {
+            var contactPage = contactRepository.findContactByVatNumberEqualsIgnoreCase(vatNumber);
+            return contactPage.stream()
+                    .filter(c -> !c.getId().equals(contact.getId()))
+                    .toList();
+        };
+
+        validate(contact, contactFunction);
         return contactRepository.save(contact.validate());
     }
 
@@ -56,5 +65,13 @@ public class ContactServiceImpl implements ContactService {
     @Override
     public Page<Contact> findContactsByCompany(Company company, Pageable pageable) {
         return contactRepository.findContactsByCompanies_Id(company.getId(), pageable);
+    }
+
+    private static void validate(Contact contact, Function<String, Collection<Contact>> contactFunction) {
+        var vatNumber = contact.getVatNumber();
+        if (StringUtils.isNotBlank(vatNumber) && !contactFunction.apply(vatNumber).isEmpty()) {
+            throw new InvalidEntityException(
+                    String.format("VAT number (%s) is already defined for another contact", vatNumber));
+        }
     }
 }
