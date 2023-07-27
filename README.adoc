@@ -6,6 +6,13 @@ Managing contacts for companies
 
 * link:company-contacts-api[Implementation]
 
+== Tools
+- OpenAPI 3.0.x
+- Java 17
+- JPA 2.x
+- Spring Boot 3.1.x
+- Swagger UI
+
 == Build and Run
 
 [source,bash]

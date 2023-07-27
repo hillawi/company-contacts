@@ -1,8 +1,0 @@
-= Company contacts REST service =
-
-== Getting started
-
-=== Tools
-- Java 17
-- JPA 2.x
-- Spring Boot 3.1.x
