@@ -3,9 +3,11 @@ package com.genesisconsult.usecase.companycontacts.core.service.impl;
 import com.genesisconsult.usecase.companycontacts.core.domain.Company;
 import com.genesisconsult.usecase.companycontacts.core.domain.Contact;
 import com.genesisconsult.usecase.companycontacts.core.exception.EntityNotFoundException;
+import com.genesisconsult.usecase.companycontacts.core.exception.InvalidEntityException;
 import com.genesisconsult.usecase.companycontacts.core.repo.ContactRepository;
 import com.genesisconsult.usecase.companycontacts.core.service.ContactService;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -30,7 +32,12 @@ public class ContactServiceImpl implements ContactService {
 
     @Override
     public Contact save(Contact contact) {
-        // TODO find contact by vatNumber and throw an exception if found
+        var vatNumber = contact.getVatNumber();
+        if (StringUtils.isNotBlank(vatNumber) &&
+                contactRepository.countContactByVatNumberEqualsIgnoreCase(vatNumber) > 0) {
+            throw new InvalidEntityException(
+                    String.format("VAT number (%s) is already defined for another contact", vatNumber));
+        }
         return contactRepository.save(contact.validate());
     }
 
