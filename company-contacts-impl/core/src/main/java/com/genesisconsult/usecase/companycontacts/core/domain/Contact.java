@@ -26,6 +26,7 @@ public class Contact implements Serializable {
     @NotBlank(message = "The contact last name is required")
     private String lastName;
     @NotNull(message = "The contact type is required")
+    @Enumerated(EnumType.STRING)
     private ContactType contactType;
     private String vatNumber;
     @OneToOne(cascade = CascadeType.ALL)
