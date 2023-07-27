@@ -14,3 +14,7 @@ mvn clean install -f company-contacts-api/pom.xml
 
 mvn clean install -f company-contacts-impl/pom.xml && mvn spring-boot:run -f company-contacts-impl/pom.xml -pl rest
 ----
+
+== Calling the API
+1. Use http://localhost:8080/v1/swagger-ui/index.html[Swagger UI]
+2. Import link:tools/postman/companies-contacts.postman_collection.json[Postman collection]
