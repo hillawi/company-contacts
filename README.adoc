@@ -9,9 +9,9 @@ Managing contacts for companies
 == Tools
 - OpenAPI 3.0.x
 - Java 17
-- JPA 2.x
+- JPA 3.1
 - Spring Boot 3.1.x
-- Swagger UI
+- Swagger UI 4.18.x
 
 == Build and Run
 
