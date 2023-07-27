@@ -40,16 +40,15 @@ public class CompanyServiceImpl implements CompanyService {
 
     @Override
     public Company save(Company company) {
-        var companyPage = search(company.getVatNumber(), Pageable.unpaged());
-        validate(company, companyPage.getContent());
+        validate(company, companyRepository.findCompanyByVatNumberEqualsIgnoreCase(company.getVatNumber()));
         return companyRepository.save(company);
     }
 
     @Override
     public Company update(Company company) {
-        var companyPage = search(company.getVatNumber(), Pageable.unpaged());
-        var companies = companyPage.getContent().stream()
-                .filter(c -> !c.getId().equals(company.getId())).toList();
+        var companies = companyRepository.findCompanyByVatNumberEqualsIgnoreCase(company.getVatNumber()).stream()
+                .filter(c -> !c.getId().equals(company.getId()))
+                .toList();
         validate(company, companies);
         return companyRepository.save(company);
     }
